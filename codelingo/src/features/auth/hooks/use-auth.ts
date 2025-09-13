@@ -85,7 +85,7 @@ export function useProfile() {
 
 export function useUpdateProfile() {
   const queryClient = useQueryClient();
-  const { setAuth, user, token } = useAuthStore();
+  const { setAuth, token } = useAuthStore();
   
   return useMutation({
     mutationFn: (userData: Partial<User>) => authApi.updateProfile(userData),

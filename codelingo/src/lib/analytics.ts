@@ -1,15 +1,15 @@
 import { env } from '../config/env';
 
 // Analytics events interface
-interface AnalyticsEvent {
-  event: string;
-  category?: string;
-  action?: string;
-  label?: string;
-  value?: number;
-  properties?: Record<string, any>;
-  userId?: string;
-}
+// interface AnalyticsEvent {
+//   event: string;
+//   category?: string;
+//   action?: string;
+//   label?: string;
+//   value?: number;
+//   properties?: Record<string, any>;
+//   userId?: string;
+// }
 
 // User properties interface
 interface UserProperties {
@@ -23,7 +23,6 @@ interface UserProperties {
 
 class AnalyticsService {
   private isInitialized = false;
-  private userId: string | null = null;
   private debugMode = env.DEV;
 
   constructor() {
@@ -78,7 +77,6 @@ class AnalyticsService {
 
   // Set user identification
   identify(userId: string, properties?: UserProperties) {
-    this.userId = userId;
 
     if (!this.isInitialized) return;
 
@@ -252,7 +250,6 @@ class AnalyticsService {
 
   // Clear user data (for logout)
   reset() {
-    this.userId = null;
 
     if (!this.isInitialized) return;
 
