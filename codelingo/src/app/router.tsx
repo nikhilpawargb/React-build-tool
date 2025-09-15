@@ -5,6 +5,7 @@ import { Courses } from './routes/courses';
 import { CourseDetail } from './routes/course-detail';
 import { Profile } from './routes/profile';
 import { NotFound } from './routes/not-found';
+import { LoginForm } from '../features/auth/components/LoginForm';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+       {
+        path: 'login',
+        element: <LoginForm />,
       },
       {
         path: 'courses',

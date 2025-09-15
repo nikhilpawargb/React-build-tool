@@ -8,9 +8,9 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const cardVariants = {
-  default: 'bg-white shadow-sm',
-  outlined: 'bg-white border border-gray-200',
-  elevated: 'bg-white shadow-lg',
+  default: 'bg-white dark:bg-gray-800 shadow-sm',
+  outlined: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
+  elevated: 'bg-white dark:bg-gray-800 shadow-lg',
 };
 
 const cardPadding = {
@@ -30,7 +30,7 @@ export function Card({
   return (
     <div
       className={cn(
-        'rounded-lg',
+        'rounded-lg transition-colors',
         cardVariants[variant],
         cardPadding[padding],
         className
@@ -62,7 +62,7 @@ interface CardTitleProps {
 
 export function CardTitle({ children, className }: CardTitleProps) {
   return (
-    <h3 className={cn('text-lg font-semibold text-gray-900', className)}>
+    <h3 className={cn('text-lg font-semibold text-gray-900 dark:text-white', className)}>
       {children}
     </h3>
   );
@@ -75,7 +75,7 @@ interface CardContentProps {
 
 export function CardContent({ children, className }: CardContentProps) {
   return (
-    <div className={cn('text-gray-600', className)}>
+    <div className={cn('text-gray-600 dark:text-gray-300', className)}>
       {children}
     </div>
   );
@@ -88,7 +88,7 @@ interface CardFooterProps {
 
 export function CardFooter({ children, className }: CardFooterProps) {
   return (
-    <div className={cn('mt-4 pt-4 border-t border-gray-200', className)}>
+    <div className={cn('mt-4 pt-4 border-t border-gray-200 dark:border-gray-700', className)}>
       {children}
     </div>
   );

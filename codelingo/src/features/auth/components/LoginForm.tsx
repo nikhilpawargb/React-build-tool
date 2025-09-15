@@ -64,7 +64,7 @@ export function LoginForm({ isOpen, onClose, onSwitchToRegister }: LoginFormProp
     <Modal isOpen={isOpen} onClose={handleClose} title="Sign In">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Email
           </label>
           <input
@@ -72,16 +72,16 @@ export function LoginForm({ isOpen, onClose, onSwitchToRegister }: LoginFormProp
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-              errors.email ? 'border-red-300' : 'border-gray-300'
+            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+              errors.email ? 'border-red-300 dark:border-red-400' : 'border-gray-300 dark:border-gray-600'
             }`}
             placeholder="Enter your email"
           />
-          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+          {errors.email && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.email}</p>}
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Password
           </label>
           <input
@@ -89,12 +89,12 @@ export function LoginForm({ isOpen, onClose, onSwitchToRegister }: LoginFormProp
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-              errors.password ? 'border-red-300' : 'border-gray-300'
+            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+              errors.password ? 'border-red-300 dark:border-red-400' : 'border-gray-300 dark:border-gray-600'
             }`}
             placeholder="Enter your password"
           />
-          {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+          {errors.password && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.password}</p>}
         </div>
 
         <div className="flex items-center justify-between">
@@ -105,18 +105,18 @@ export function LoginForm({ isOpen, onClose, onSwitchToRegister }: LoginFormProp
               onChange={(e) => setRememberMe(e.target.checked)}
               className="mr-2"
             />
-            <span className="text-sm text-gray-600">Remember me</span>
+            <span className="text-sm text-gray-600 dark:text-gray-300">Remember me</span>
           </label>
           <button
             type="button"
-            className="text-sm text-indigo-600 hover:text-indigo-800"
+            className="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300"
           >
             Forgot password?
           </button>
         </div>
 
         {loginMutation.error && (
-          <div className="text-red-500 text-sm">
+          <div className="text-red-500 dark:text-red-400 text-sm">
             {(loginMutation.error as any)?.message || 'Login failed. Please try again.'}
           </div>
         )}
@@ -132,12 +132,12 @@ export function LoginForm({ isOpen, onClose, onSwitchToRegister }: LoginFormProp
           </Button>
 
           {onSwitchToRegister && (
-            <p className="text-center text-sm text-gray-600">
+            <p className="text-center text-sm text-gray-600 dark:text-gray-300">
               Don't have an account?{' '}
               <button
                 type="button"
                 onClick={onSwitchToRegister}
-                className="text-indigo-600 hover:text-indigo-800 font-medium"
+                className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium"
               >
                 Sign up
               </button>

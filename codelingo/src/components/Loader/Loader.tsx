@@ -15,7 +15,7 @@ export function Loader({ size = 'md', className }: LoaderProps) {
   return (
     <div className={cn('flex items-center justify-center', className)}>
       <svg
-        className={cn('animate-spin text-indigo-600', loaderSizes[size])}
+        className={cn('animate-spin text-indigo-600 dark:text-indigo-400', loaderSizes[size])}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -48,7 +48,7 @@ export function SpinnerOverlay({ isLoading, children }: SpinnerOverlayProps) {
     <div className="relative">
       {children}
       {isLoading && (
-        <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
+        <div className="absolute inset-0 bg-white bg-opacity-75 dark:bg-gray-900 dark:bg-opacity-75 flex items-center justify-center">
           <Loader size="lg" />
         </div>
       )}

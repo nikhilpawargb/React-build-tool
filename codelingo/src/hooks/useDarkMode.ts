@@ -34,40 +34,40 @@ export function useDarkMode() {
       effectiveTheme = theme;
     }
     
-    // Add the effective theme class
+    // Apply the theme class
     root.classList.add(effectiveTheme);
     setIsDarkMode(effectiveTheme === 'dark');
     
-    // Store theme preference
+    // Save to localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  // Listen for system theme changes when theme is 'system'
   useEffect(() => {
-    // Listen for system theme changes when theme is 'system'
     if (theme !== 'system') return;
-
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsDarkMode(e.matches);
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => {
       const root = window.document.documentElement;
       root.classList.remove('light', 'dark');
-      root.classList.add(e.matches ? 'dark' : 'light');
+      const newTheme = mediaQuery.matches ? 'dark' : 'light';
+      root.classList.add(newTheme);
+      setIsDarkMode(newTheme === 'dark');
     };
-
-    mediaQuery.addEventListener('change', handleChange);
     
-    return () => {
-      mediaQuery.removeEventListener('change', handleChange);
-    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);
 
   const toggleDarkMode = () => {
-    setTheme(prevTheme => {
-      if (prevTheme === 'light') return 'dark';
-      if (prevTheme === 'dark') return 'system';
-      return 'light';
-    });
+    if (theme === 'system') {
+      // If system, toggle to opposite of current system preference
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(systemPrefersDark ? 'light' : 'dark');
+    } else {
+      // Toggle between light and dark
+      setTheme(theme === 'dark' ? 'light' : 'dark');
+    }
   };
 
   const setLightMode = () => setTheme('light');
